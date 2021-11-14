@@ -1,0 +1,19 @@
+.a {
+    display: -webkit-box;
+    max-width: 250px;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+
+.table td {
+    padding: 5px 10px !important;
+}
+
+.b {
+    width: 102px;
+}
+
+.e {
+    width: 10%;
+}

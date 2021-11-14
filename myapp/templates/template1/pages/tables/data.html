@@ -1,0 +1,267 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | DataTables</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static '/css/all.min.css' %}">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{% static '/css/responsive.bootstrap4.min.css' %}">
+  <link rel="stylesheet" href="{% static '/css/dataTables.bootstrap4.min.css' %}">
+  <link rel="stylesheet" href="{% static '/css/buttons.bootstrap4.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static '/css/adminlte.min.css' %}">
+  <link rel="stylesheet" href="{% static '/css/fix.css'%}">
+  <link rel="stylesheet" href="{% static '/css/e.css'%}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+          integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+          crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+          crossorigin="anonymous"></script>
+</head>
+
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+ with font-awesome or any other icon font library -->
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="  fas fa-edit"></i>
+              <p>
+                Forms
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/form" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Schedule</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Tables
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+              <li class="nav-item">
+                <a href="/show" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>DataTables</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>DataTables</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">DataTables</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="row">
+                <div class="col-12 card-header" style="display:flex; justify-content: center; align-items: center;">
+                  <h6><a href="/export-excel"  style="left: 38%;position: absolute;top: 29%;">Export xls</a></h6>
+                  <h6><a href="/export-csv" >Export csv</a></h6>
+                  <form method="POST" action="/search" style="display:flex">
+                  <div class="row"></div>
+                    <div class="col-8 card-search">
+                      {% csrf_token %}
+                      <div class="input-group" style="width: 300px; margin-left: 280%;position: absolute;">
+                        <input type="text" class="form-control" name="Key_word"  placeholder="Recipient's username"
+                               aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+                      </div>
+                    </div>
+                      {% comment %} <div class="input-group" style="width: 300px; margin-left: 53%;">
+                        <input type="text" class="form-control" name="Social_Network"  placeholder="Recipient's username"
+                               aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search1</button>
+                      </div>
+                    </div> {% endcomment %}
+                    <div class="col-4 card-select">
+                      <select class="custom-select" name="Social_Network" aria-label="Default select example" style="width: 120px;">
+                        <option value="Twitter">Twitter</option>
+                        <option value="Linkedin">Linkedin</option>
+                        <option value="">All</option>
+                      </select>
+                    </div>
+                  </form> 
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example2" class="table table-bordered">
+                  <thead>
+                  <tr>
+                    <th>Social_Network</th>
+                    <th>Key_word</th>
+                    <th>Names</th>
+                    <th>Link_post</th>
+                    <th>post</th>
+                    <th>comment</th>
+                    <th>location</th>
+                    <th>device</th>
+                    <th>time</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <div class="show-hide-text wrapper">
+                    {% for i in employee %}
+                    <tr>
+                      <td><span style="width: 90px;">{{ i.Social_Network }}</span></td>
+                      <td><span>{{ i.Key_word }}</span></td>
+                      <td><span style="width: 90px;">{{ i.Names }}</span></td>
+                      <td><span class="a w-{{i.Id}}" onclick="handleClick(`w`,`{{i.Id}}`)">{{ i.Link_post }}</span></td>
+                      <td><span class="a r-{{i.Id}}" onclick="handleClick(`r`,`{{i.Id}}`)">{{ i.post }}</span></td>
+                      <td><span class="a d-{{i.Id}}" onclick="handleClick(`d`,`{{i.Id}}`)">{{ i.comment }}</span></td>
+                      <td><span class="a e-{{i.Id}}" onclick="handleClick(`e`,`{{i.Id}}`)">{{ i.location}}</span></td>
+                      <td><span class="b g-{{i.Id}}" onclick="handleClick(`g`,`{{i.Id}}`)">{{ i.device }}</span></td>
+                      <td><span class="a h-{{i.Id}}" onclick="handleClick(`h`,`{{i.Id}}`)">{{ i.time }}</span></td>
+                    </tr>
+                    {% endfor %}
+                  </div>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+      <b>Version</b> 3.2.0-rc
+    </div>
+    <strong>Copyright &copy; 2014-2021</strong> All rights reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<script>
+    let cout = 1;
+  function handleClick(v,e){
+    console.log('sssssss',e)
+    if(cout%2 !== 0){
+    document.querySelector(`.${v}-${e}`).style.display='block'
+    }else{
+      document.querySelector(`.${v}-${e}`).style.display='-webkit-box'
+    } 
+    cout++
+    
+   //
+//document.querySelector(`${e}`+"-"+`${v}`).style.display = 'block'
+  }
+</script>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="{% static '/js/jquery.min.js' %}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static '/js/bootstrap.bundle.min.js' %}"></script>
+<!-- DataTables  & Plugins -->
+<script src="{% static '/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static '/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static '/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static '/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static '/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static '/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static '/js/jszip.min.js' %}"></script>
+<script src="{% static '/js/pdfmake.min.js' %}"></script>
+<script src="{% static '/js/vfs_fonts.js' %}"></script>
+<script src="{% static '/js/buttons.html5.min.js' %}"></script>
+<script src="{% static '/js/buttons.print.min.js' %}"></script>
+<script src="{% static '/js/buttons.colVis.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static '/js/adminlte.min.js' %}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{% static '/js/demo.js' %}"></script>
+<!-- Page specific script -->
+</body>
+</html>

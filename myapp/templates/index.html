@@ -1,0 +1,22 @@
+<form method="POST" action="add">
+    {% csrf_token %}
+    <label>ID:</label>
+    <div>{{ form.eid}}</div>
+    <label>Name:</label>
+    <div>{{ form.ename}}</div>
+    <label>Title:</label>
+    <div>{{ form.etitle}}</div>
+    <label>MinTemp:</label>
+    <div>{{ form.MinTemp}}</div>
+    <label>WindGustDir:</label>
+    <div>{{ form.WindGustDir}}</div>
+    <label>WindDir9am:</label>
+    <div>{{ form.WindDir9am}}</div>
+    <label>Type:</label>
+    <div>{{ form.Type}}</div>
+    <div>
+        <button type="submit" >Add</button>
+    </div>
+</form>
+
+
